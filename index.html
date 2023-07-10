@@ -1,0 +1,388 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Calculator</title><style>
+        body {
+            background-color: #111111;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            transition: background-color 0.5s;
+        }
+        .result{
+            border:3px ridge whitesmoke;
+            padding:20px;
+        }   .completed {
+            text-decoration: line-through;
+        }
+
+        .container {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            color:#d7db98;
+            text-shadow: 3px 3px 3px black;
+            box-shadow: 0px 3px 33px 0px wheat inset;
+
+        }
+
+        .input-group label {
+            margin-right: 10px;
+            display: block;
+        }
+
+        .input-group input {
+            padding: 5px;
+            border-radius: 4px;
+            border: none;
+            background-color: #ffffff;
+            color: #111111;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3f51b5;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2c3e91;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .result p {
+            margin-bottom: 10px;
+        }
+
+        .volume-label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .volume-value {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .light-switch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .light-switch input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .light-switch label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+
+        .instructions-container {
+            background-color: #222222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .instructions-title {
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .instructions-list {
+            list-style-type: decimal;
+            color: #ffffff;
+        }
+
+        .instructions-item {
+            margin-bottom: 5px;
+            box-shadow: 0px 3px 33px 0px wheat;
+        }
+        .light-switch label:before {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: #111111;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+
+        @counter-style cs-symbolic{
+            system: symbolic;
+            symbols:'*' ⁑ † ‡;
+            range:1 15;
+            suffix: " ";
+          }
+        @counter-style thumbs {
+            system: cyclic;
+            symbols: "\1F44D";
+            suffix: " ";
+          }
+          
+          .fade-in-container {
+            opacity: 0;
+            transition: opacity 0.5s;
+          }
+          
+          .fade-in-container.fade-in {
+            opacity: 1;
+          }
+          
+
+
+          ul {
+padding:10px;     
+border-right:2px double slategrey;   
+border-bottom:.3px ridge slateblue;
+border-bottom-right-radius: 22px;  }
+
+        .info, li{
+            list-style-type: cs-symbolic;
+            margin:10px;
+        }
+
+        .light-switch input:checked + label {
+            background-color: #ffffff;
+        }
+
+        .light-switch input:checked + label:before {
+            transform: translateX(30px);
+        }
+    </style>  <script>
+        function calculateSquareVolume() {
+    
+            document.getElementById("step2").classList.add("completed");
+            
+            var length = parseFloat(document.getElementById("length").value);
+            var width = parseFloat(document.getElementById("width").value);
+            var thickness = parseFloat(document.getElementById("thickness").value);
+if(length, width, thickness){
+    document.getElementById("step1").classList.add("completed");
+
+}
+            var volume = length * width * (thickness / 12);
+            document.getElementById("totalSquareVolume").textContent = volume.toFixed(2);
+        }
+        function calculateLinearVolume() {
+            document.getElementById("step4").classList.add("completed");
+
+            var lengths = document.getElementById("lengths").value.split(",").map(Number);
+            var linearWidth = parseFloat(document.getElementById("linearWidth").value);
+            var linearThickness = parseFloat(document.getElementById("linearThickness").value);
+        if(lengths,linearWidth,linearThickness){
+            document.getElementById("step3").classList.add("completed");
+
+        }
+            var sumOfLengths = lengths.reduce((a, b) => a + b, 0);
+            var volume = (sumOfLengths * (linearWidth / 12) * (linearThickness / 12)) / 27;
+            document.getElementById("totalLinearVolume").textContent = volume.toFixed(2);
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Volume Calculator</h1>
+
+        <div class="instructions-container">
+            <h2 class="instructions-title">Instructions:</h2>
+            <ol class="instructions-list">
+                <li class="instructions-item" id="step1">Enter the square area dimensions in the Square Area section.</li>
+                <li class="instructions-item" id="step2">Click on the "Calculate Square Volume" button to calculate the square volume.</li>
+                <li class="instructions-item" id="step3">Enter the linear area dimensions in the Linear Area section.</li>
+                <li class="instructions-item" id="step4">Click on the "Calculate Linear Volume" button to calculate the linear volume.</li>
+                <li class="instructions-item" id="step5">Click on the "Calculate Waste Volumes" button to calculate the waste volumes.</li>
+                <li class="instructions-item" id="step6">Enter the total volume in the Waste Area section.</li>
+                <li class="instructions-item" id="step7">Click on the "Calculate Waste Volumes" button to calculate the waste volumes.</li>
+         
+            </ol>
+        </div>
+        
+        
+        <div id="squareArea">
+            <h2>Square Area</h2>
+            <div class="input-group">
+                <label for="length">Length:</label>
+                <input type="number" id="length">
+            </div>
+            <div class="input-group">
+                <label for="width">Width:</label>
+                <input type="number" id="width">
+            </div>
+            <div class="input-group">
+                <label for="thickness">Thickness:</label>
+                <input type="number" id="thickness">
+            </div>
+            <button onclick="calculateSquareVolume()">Calculate Square Volume</button>
+            <div class="result">
+                <p class="volume-label">Total Square Volume Needed: <span id="totalSquareVolume"></span></p>
+            </div>
+        </div>
+
+        <div id="linearArea">
+            <h2>Linear Area</h2>
+            <div class="input-group">
+                <label for="lengths">Lengths (comma-separated):</label>
+                <input type="text" id="lengths">
+            </div>
+            <div class="input-group">
+                <label for="linearWidth">Linear Width:</label>
+                <input type="number" id="linearWidth">
+            </div>
+            <div class="input-group">
+                <label for="linearThickness">Linear Thickness:</label>
+                <input type="number" id="linearThickness">
+            </div>
+            <button onclick="calculateLinearVolume()">Calculate Linear Volume</button>
+            <div class="result">
+                <p class="volume-label">Total Linear Volume Needed: <span id="totalLinearVolume"></span></p>
+            </div>
+        </div>
+
+        <div id="wasteArea">
+            <h2>Waste Area</h2>
+            <div class="input-group">
+                <label for="totalVolume">Total Volume:</label>
+                <input type="number" id="totalVolume">
+            </div>
+            <button onclick="calculateWasteVolumes()">Calculate Waste Volumes</button>
+            <div class="result">
+                <p class="volume-label">Total No Waste Volume Needed: <span id="totalNoWasteVolume"></span></p>
+                <p class="volume-label">Total Waste Only Volume Needed: <span id="onlyWasteVolume"></span></p>
+                <p class="volume-label">Total Waste with Volume Needed: <span id="totalWasteIncludedVolumes"></span></p>
+            </div>
+        </div>
+        <div class="price-quote"><h1>Current Average Prices</h1><ul class="info">
+
+            <li>Year<li><em><b>2023</b></em></li></li>
+            <li>Cubic Yard<li><em><b>$137</b></em></li><li>Square Foot<li><em><b>$4.65 - $6.85</b></em></li></li></li>
+
+        </ul></div>
+        <div id="fade-in-container" class="fade-in-container">
+            <h2>Order</h2>
+            <p id="finalAmount">$</p>
+          </div>
+          
+    </div>
+<script>   
+    
+    function showFadeInContainer() {
+        let finalAmountP = document.getElementById('finalAmount');
+        let totalToAdd = document.getElementById('totalWasteIncludedVolumes').innerHTML;
+        let finalAmount = totalToAdd * 5.6;
+      
+        finalAmountP.innerHTML = `$${finalAmount.toFixed(2)}`;
+      
+        var container = document.getElementById("fade-in-container");
+        container.classList.add("fade-in");
+      }
+      
+      // Call the function after step 7 is complete
+
+      
+  
+
+
+async function calculateWasteVolumes() {
+    
+        document.getElementById("step5").classList.add("completed");
+
+    
+    var totalVolume =parseFloat(document.getElementById("totalVolume").value);
+
+   var squareVolume = parseFloat(document.getElementById("totalSquareVolume").textContent);
+    var linearVolume =  parseFloat(document.getElementById("totalLinearVolume").textContent);
+
+
+    if(totalVolume){
+     
+            document.getElementById("step6").classList.add("completed");
+            document.getElementById("step7").classList.add("completed");
+            calculateWasteVolumes();
+            showFadeInContainer();
+
+    }
+    var totalNoWasteVolume =  squareVolume +  linearVolume;
+
+  document.getElementById("totalNoWasteVolume").textContent = totalNoWasteVolume.toFixed(2);    
+    var multipliedVolume = totalVolume * 0.1;
+document.getElementById("onlyWasteVolume").textContent = multipliedVolume.toFixed(2);
+
+    var totalWasteIncludedVolumes = totalVolume + multipliedVolume;
+   document.getElementById("totalWasteIncludedVolumes").textContent = totalWasteIncludedVolumes.toFixed(2)
+   
+
+
+}
+
+
+
+
+
+
+  
+
+</script>
+</body>
+</html>
